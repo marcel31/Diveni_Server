@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Players {
+  id                Int                 @id @default(autoincrement())
+  uuid              String
+  points            Int
+  Games             Games               @relation(fields: [gameId], references: [id])
+  Players_Questions Players_Questions[]
+  gameId            Int
+  xp                Int                 @default(0)
+  crowns            Int                 @default(0)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model Games {
+  id        Int       @id @default(autoincrement())
+  joinCode  String?   @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  rounds    Int       @default(1)
+  players   Players[]
+}
+
+model Questions {
+  id                 Int                  @id @default(autoincrement())
+  AIImages           AIImages[]
+  Searches_Questions Searches_Questions[]
+  Guess_Songs        Guess_Songs[]
+  Players_Questions  Players_Questions[]
+}
+
+model Players_Questions {
+  id         Int       @id @default(autoincrement())
+  Players    Players   @relation(fields: [playerId], references: [id])
+  playerId   Int
+  Questions  Questions @relation(fields: [questionId], references: [id])
+  questionId Int
+  answer     String
+  createdAt  DateTime  @default(now())
+}
+
+model AIImages {
+  id         Int       @id @default(autoincrement())
+  urlP       String
+  urlI       String
+  questionId Int
+  Questions  Questions @relation(fields: [questionId], references: [id])
+}
+
+model Searches {
+  id         Int                  @id @default(autoincrement())
+  searches   Int
+  term       String
+  image      String?
+  questions1 Searches_Questions[] @relation("Searches_Question1")
+  questions2 Searches_Questions[] @relation("Searches_Question2")
+}
+
+model Searches_Questions {
+  id          Int       @id @default(autoincrement())
+  idQuestion1 Int?
+  idQuestion2 Int?
+  question1   Searches? @relation("Searches_Question1", fields: [idQuestion1], references: [id])
+  question2   Searches? @relation("Searches_Question2", fields: [idQuestion2], references: [id])
+  Questions   Questions @relation(fields: [id], references: [id])
+}
+
+model Guess_Songs {
+  id        Int       @id @default(autoincrement())
+  url       String
+  Questions Questions @relation(fields: [id], references: [id])
+}

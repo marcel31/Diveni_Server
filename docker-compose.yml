@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db-diveni:
+    image: mysql:latest
+    container_name: db-diveni
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: diveni
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db-diveni
+    environment:
+      PMA_HOST: db-diveni
+      PMA_USER: root
+      PMA_PASSWORD: root
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8083:80

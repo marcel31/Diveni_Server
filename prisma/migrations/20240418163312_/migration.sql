@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Players` ADD COLUMN `crowns` INTEGER NOT NULL DEFAULT 0;
