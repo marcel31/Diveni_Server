@@ -44,8 +44,6 @@
     <br />
     <br />
     <!-- Link to Demo Video -->
-    <a href="https://back.pollorebozado.com/">Ver Demo</a>
-    ·
     <a href="https://github.com/LaSalleGracia-Projectes/projecte-aplicaci-web-servidor-richard-stallman/issues">Report Bug</a>
     ·
     <a href="https://github.com/LaSalleGracia-Projectes/projecte-aplicaci-web-servidor-richard-stallman/issues">Request Feature</a>
