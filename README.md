@@ -92,7 +92,8 @@ Esta repo contiene el backend para Diveni una App de quiz multijugador en tiempo
 
 [Contributors][contributors-url]
 
-Gerard Du Pre - [@gerardPolloRebozado](https://github.com/GerardPolloRebozado)
+- Marcel Ges - [@marcel31](https://github.com/marcel31)
+- Gerard Du Pre - [@gerardPolloRebozado](https://github.com/GerardPolloRebozado)
 
 ### Hecho con:
 
